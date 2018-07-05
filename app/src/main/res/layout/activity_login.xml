@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -53,7 +54,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <EditText
@@ -71,12 +72,13 @@
             </EditText>
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="30dip"
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
                 android:layout_marginTop="10dip"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/code" />
+                android:layout_marginRight="140dip"
+                android:background="@drawable/code" />
         </LinearLayout>
 
 
@@ -93,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dip"
-            android:layout_marginRight="50dip"
+
             android:text="记住密码" />
 
         <CheckBox
@@ -101,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dip"
-            android:layout_marginRight="50dip"
+
             android:text="自动登录" />
     </LinearLayout>
 
