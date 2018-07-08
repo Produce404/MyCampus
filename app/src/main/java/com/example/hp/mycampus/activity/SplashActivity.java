@@ -1,11 +1,23 @@
 package com.example.hp.mycampus.activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.hp.mycampus.R;
+import com.example.hp.mycampus.util.InfoUtil;
+
+import java.util.List;
+
+import androidx.core.app.ActivityCompat;
 
 public class SplashActivity extends Activity {
 
@@ -17,16 +29,6 @@ public class SplashActivity extends Activity {
 
             @Override
             public void run() {
-//                                        SharedPreferenceUtil util = new SharedPreferenceUtil(
-//                                             getApplicationContext(), "accountInfo");
-//                                        String isLogin = util.getKeyData("isLogin");
-                //是否已登录
-//                                        if (isLogin.equals("TRUE")) {
-//                                                  Intent intent = new Intent(SplashActivity.this,
-//                                                       MainActivity.class);
-//                                                  startActivity(intent);
-//                                                  finish();
-//                                        } else {
                 Intent intent = new Intent(SplashActivity.this,
                         LoginActivity.class);
                 startActivity(intent);

@@ -76,7 +76,7 @@
                 android:layout_height="30dip"
                 android:layout_marginTop="10dip"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/code" />
+                />
         </LinearLayout>
 
 
