@@ -55,7 +55,7 @@ public class ScoreActivity extends Activity {
         sel_xn = (Spinner) findViewById(R.id.sel_xn);
         sel_xq = (Spinner) findViewById(R.id.sel_xq);
         //设置学年Spinner的监听事件 设置选择的值
-        sel_xn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*sel_xn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 s_xn = parent.getItemAtPosition(position).toString();
@@ -77,14 +77,15 @@ public class ScoreActivity extends Activity {
             public void onNothingSelected(AdapterView<?> parent) {
                 s_xq = "0";
             }
-        });
-
+        });*/
         //进行查询成绩的操作
         query.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(ScoreActivity.this, ScoreShowActivity.class);
+                startActivity(intent);
                 //连接服务器 ,获取成绩信息的逻辑
-                new Thread() {
+                /*new Thread() {
                     @Override
                     public void run() {
                         super.run();
@@ -96,6 +97,7 @@ public class ScoreActivity extends Activity {
                         result = httpScoreUtil.getQuery();
                         if (result.size() == 0) {
                             //获取数据失败 发送提示消息
+                            Intent intent = new Intent(getApplicationContext(), ScoreShowActivity.class);
                             Message msg = handler.obtainMessage();
                             msg.arg1 = 1;
                             handler.sendMessage(msg);
@@ -106,7 +108,7 @@ public class ScoreActivity extends Activity {
                             startActivity(intent);
                         }
                     }
-                }.start();
+                }.start();*/
             }
         });
     }

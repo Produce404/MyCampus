@@ -1,21 +1,11 @@
 package com.example.hp.mycampus.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
@@ -29,10 +19,6 @@ import com.example.hp.mycampus.R;
 import com.example.hp.mycampus.model.Lesson;
 import com.example.hp.mycampus.util.InfoUtil;
 
-import java.io.File;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class LoginActivity extends Activity {
@@ -74,10 +60,8 @@ public class LoginActivity extends Activity {
             StrictMode.setThreadPolicy(policy);
         }
         InfoUtil.getSafeCode();
-
         String img_path = "data/data/com.example.hp.mycampus/safecode.png";
         Bitmap bmp= BitmapFactory.decodeFile(img_path);
-
         ImageView imageview=(ImageView) findViewById(R.id.imageView);
         imageview.setImageBitmap(bmp);
         imageview.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +118,7 @@ public class LoginActivity extends Activity {
                                     ArrayList<Lesson> lessons = InfoUtil.getLessons();
                                     for (Lesson lesson : lessons)
                                         System.out.println(lesson);
-                                    System.out.println("爬虫成功了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
+                                    System.out.println("爬虫成功了！");
                                 } else {
                                     System.out.println(InfoUtil.getReason());
                                 }

@@ -13,13 +13,6 @@ import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import com.example.hp.mycampus.model.Lesson;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Environment;
-
-
 public class InfoUtil {
 
     private final static String url_safecode = "http://210.42.121.241/servlet/GenImg"; // 验证码
