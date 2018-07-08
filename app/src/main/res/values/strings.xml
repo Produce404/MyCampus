@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">MyCampus</string>
+    <string name="app_name">app</string>
+    <string name="heading">课程表</string>
+    <string name="set">设置</string>
+    <string name="exit">退出</string>
+    <string-array name="sel_xn">
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+    </string-array>
+    <string-array name="sel_xq">
+        <item>第一学期</item>
+        <item>第二学期</item>
+    </string-array>
 </resources>
