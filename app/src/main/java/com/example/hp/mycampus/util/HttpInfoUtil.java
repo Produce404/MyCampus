@@ -9,11 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * 作者：Jacky
- * 邮箱：550997728@qq.com
- * 时间：2016/3/13 09:58
- */
+
 public class HttpInfoUtil {
           private String cookie;
           //private Student student;

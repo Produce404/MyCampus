@@ -3,9 +3,6 @@ package com.example.hp.mycampus.util;
 import java.io.Serializable;
 
 /**
- * 作者：Jacky
- * 邮箱：550997728@qq.com
- * 时间：2016/2/27 13:44
  * JavaBean成绩类
  */
 public class MyScore implements Serializable{

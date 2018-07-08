@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 作者：Jacky
- * 邮箱：550997728@qq.com
- * 时间：2016/2/26 11:16
  * 查询教务系统成绩的Util
  */
 public class HttpScoreUtil {

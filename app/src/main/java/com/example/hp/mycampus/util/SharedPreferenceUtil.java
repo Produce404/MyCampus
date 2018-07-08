@@ -3,11 +3,6 @@ package com.example.hp.mycampus.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * 作者：Jacky
- * 邮箱：550997728@qq.com
- * 时间：2016/2/26 11:03
- */
 public class SharedPreferenceUtil {
           private Context mContext;
           private String mFileName;
