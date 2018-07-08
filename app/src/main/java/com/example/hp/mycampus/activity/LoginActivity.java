@@ -128,13 +128,13 @@ public class LoginActivity extends Activity {
                                 LoginActivity.this.password = ed_password.getText().toString().trim();
                                 LoginActivity.this.code = ed_code.getText().toString().trim();
                                 if (InfoUtil.Login(LoginActivity.this.username, LoginActivity.this.password, LoginActivity.this.code)) {
-                                    System.out.println("成功了！！！！！！");
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     mode=0;
                                     startActivity(intent);
                                     ArrayList<Lesson> lessons = InfoUtil.getLessons();
                                     for (Lesson lesson : lessons)
                                         System.out.println(lesson);
+                                    System.out.println("爬虫成功了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
                                 } else {
                                     System.out.println(InfoUtil.getReason());
                                 }
