@@ -93,7 +93,7 @@ public class InfoUtil {
                 url = url.substring(url.indexOf("('") + 2);
                 url = url.substring(0, url.indexOf("'"));
 
-                url_lessons = "http://210.42.121.241" + url;
+                url_lessons = "http://210.42.121.241" + url+"&year=2018&term=%C9%CF";
                 lessons = dealWithLessons(url_lessons);
                 return true;
             } else {
@@ -132,64 +132,64 @@ public class InfoUtil {
 
         while (s.contains("var")) {
             s = s.substring(s.indexOf("=") + 1);
-            String lessonName = s.substring(0, s.indexOf("\";") + 1);
+            String lessonName = s.substring(2, s.indexOf("\";"));
 
             s = s.substring(s.indexOf("=") + 1);
-            String day = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            s = s.substring(s.indexOf("=") + 1);
-            String beginWeek = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String endWeek = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String classNote = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String beginTime = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String endTime = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String detail = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String classRoom = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String weekInterVal = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String teacherName = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String professionName = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String planType = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String credit = s.substring(0, s.indexOf("\";") + 1);
-
-            s = s.substring(s.indexOf("=") + 1);
-            String areaName = s.substring(0, s.indexOf("\";") + 1);
+            String day = s.substring(2, s.indexOf("\";"));
 
             s = s.substring(s.indexOf("=") + 1);
             s = s.substring(s.indexOf("=") + 1);
-            String academicTeach = s.substring(0, s.indexOf("\";") + 1);
+            String beginWeek = s.substring(2, s.indexOf("\";"));
 
             s = s.substring(s.indexOf("=") + 1);
-            String grade = s.substring(0, s.indexOf("\";") + 1);
+            String endWeek = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String classNote = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String beginTime = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String endTime = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String detail = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String classRoom = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String weekInterVal = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String teacherName = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String professionName = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String planType = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String credit = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String areaName = s.substring(2, s.indexOf("\";"));
 
             s = s.substring(s.indexOf("=") + 1);
             s = s.substring(s.indexOf("=") + 1);
-            String note = s.substring(0, s.indexOf("\";") + 1);
+            String academicTeach = s.substring(2, s.indexOf("\";"));
 
             s = s.substring(s.indexOf("=") + 1);
-            String state = s.substring(0, s.indexOf("\";") + 1);
+            String grade = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            s = s.substring(s.indexOf("=") + 1);
+            String note = s.substring(2, s.indexOf("\";"));
+
+            s = s.substring(s.indexOf("=") + 1);
+            String state = s.substring(2, s.indexOf("\";"));
 
             s = s.substring(s.indexOf("addCoursediv") + 1);
             s = s.substring(s.indexOf("addCoursediv") + 1);
@@ -201,6 +201,7 @@ public class InfoUtil {
         }
         return list;
     }
+
 
     private static String MD5(String key) {
         char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };

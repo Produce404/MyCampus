@@ -1,6 +1,9 @@
 package com.example.hp.mycampus.model;
 
-public class Lesson {
+import java.io.Serializable;
+
+
+public class Lesson implements Serializable{
     private String lessonName;// 课程名
     private String day;// 哪一天
     private String beginWeek;// 上课时间，从第几周开始
@@ -46,6 +49,16 @@ public class Lesson {
         this.note = note;
         this.state = state;
     }
+
+    public Lesson(String lessonName, String teacherName, String classRoom, String day, String beginTime, String endTime) {
+        this.lessonName=lessonName;
+        this.teacherName=teacherName;
+        this.classRoom=classRoom;
+        this.day=day;
+        this.beginTime=beginTime;
+        this.endTime=endTime;
+    }
+
 
     public String getLessonName() {
         return lessonName;
@@ -210,3 +223,4 @@ public class Lesson {
     }
 
 }
+

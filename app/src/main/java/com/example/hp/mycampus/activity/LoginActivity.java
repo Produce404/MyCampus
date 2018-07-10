@@ -16,26 +16,26 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.hp.mycampus.R;
-import com.example.hp.mycampus.model.Lesson;
 import com.example.hp.mycampus.util.InfoUtil;
-
-import java.util.ArrayList;
 
 public class LoginActivity extends Activity {
     private String username;
     private String password;
     private String code;
-
+    private EditText ed_username;
+    private EditText ed_password;
+    private EditText ed_code;
     private int mode=0;//网络连接控制
+
+    //消息控制
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.arg1) {
                 case 0:
-                    Toast.makeText(getApplicationContext(),"登陆失败!请检查用户名密码是否正确!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),InfoUtil.getReason(),Toast.LENGTH_LONG).show();
                     break;
-
                 case 1:
                     Toast.makeText(getApplicationContext(),"登陆成功!",Toast.LENGTH_SHORT).show();
                     break;
@@ -46,31 +46,28 @@ public class LoginActivity extends Activity {
 
         }
     };
-    private EditText ed_username;
-    private EditText ed_password;
-    private EditText ed_code;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //获取主线程网络访问权限
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        //获取验证码
         InfoUtil.getSafeCode();
         String img_path = "data/data/com.example.hp.mycampus/safecode.png";
         Bitmap bmp= BitmapFactory.decodeFile(img_path);
         ImageView imageview=(ImageView) findViewById(R.id.imageView);
         imageview.setImageBitmap(bmp);
+        //刷新验证码
         imageview.setOnClickListener(new View.OnClickListener() {
             //设置登入事件
             @Override
             public void onClick(View v) {
-                //刷新验证码
                 InfoUtil.getSafeCode();
-                System.out.println("刷新验证码成功");
                 String img_path = "data/data/com.example.hp.mycampus/safecode.png";
                 Bitmap bmp= BitmapFactory.decodeFile(img_path);
 
@@ -80,7 +77,6 @@ public class LoginActivity extends Activity {
         });
         //找到登入按钮
         Button login = (Button) findViewById(R.id.login_button);
-        //Button off_linelogin = (Button) findViewById(R.id.off_linelogin);
         ed_username = (EditText) findViewById(R.id.login_username);
         ed_password = (EditText) findViewById(R.id.login_password);
         ed_code = (EditText) findViewById(R.id.login_code);
@@ -97,33 +93,37 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //登入逻辑
-                if (0==mode) {
-                    Toast.makeText(getApplicationContext(), "玩命加载中...", Toast.LENGTH_SHORT).show();
+                while (0==mode) {
                     mode=1;
                     new Thread() {
                         @Override
                         public void run() {
                             super.run();
-                            //通过教务系统模拟登陆 测试账号密码是否正确
+                            //通过教务系统模拟登陆 测试账号密码验证码是否正确
                             try {
-
                                 //获取EditText中输入的信息
                                 LoginActivity.this.username = ed_username.getText().toString().trim();
                                 LoginActivity.this.password = ed_password.getText().toString().trim();
                                 LoginActivity.this.code = ed_code.getText().toString().trim();
                                 if (InfoUtil.Login(LoginActivity.this.username, LoginActivity.this.password, LoginActivity.this.code)) {
+                                    Message msg = handler.obtainMessage();
+                                    msg.arg1 = 1;
+                                    handler.sendMessage(msg);
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     mode=0;
                                     startActivity(intent);
-                                    ArrayList<Lesson> lessons = InfoUtil.getLessons();
-                                    for (Lesson lesson : lessons)
-                                        System.out.println(lesson);
-                                    System.out.println("爬虫成功了！");
                                 } else {
                                     System.out.println(InfoUtil.getReason());
+                                    Message msg = handler.obtainMessage();
+                                    msg.arg1 = 0;
+                                    handler.sendMessage(msg);
+                                    InfoUtil.getSafeCode();
+                                    String img_path = "data/data/com.example.hp.mycampus/safecode.png";
+                                    Bitmap bmp= BitmapFactory.decodeFile(img_path);
+                                    ImageView imageview=(ImageView) findViewById(R.id.imageView);
+                                    imageview.setImageBitmap(bmp);
+                                    mode=0;
                                 }
-
-
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 //提示连接超时
@@ -135,10 +135,7 @@ public class LoginActivity extends Activity {
                         }
                     }.start();
                 }
-
-
             }
         });
     }
-
 }
