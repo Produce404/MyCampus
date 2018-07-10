@@ -6,6 +6,9 @@
     android:background="#e9e8ed"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,9 +20,10 @@
             android:layout_height="32dip"
             android:gravity="center"
             android:textSize="20dip"
-            android:background="@drawable/true"
+            android:background="@drawable/text_background2"
             android:text="通知新闻" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,19 +62,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"
                 android:layout_marginTop="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_weight="1"
                 android:background="@drawable/text_background"
-                android:layout_weight="1">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button"
                     android:layout_width="120dip"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:background="@drawable/news1"/>
+                    android:background="@drawable/news1" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -83,12 +87,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"
                 android:layout_marginTop="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_weight="1"
                 android:background="@drawable/text_background"
-                android:layout_weight="1">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button2"
@@ -107,5 +111,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    </ScrollView>
 </RelativeLayout>
