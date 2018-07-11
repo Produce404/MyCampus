@@ -31,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        //设置通知查询按钮的监听
+        select_course=(ImageButton) findViewById(R.id. imageButton15);
+        select_course.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转
+                Intent intent = new Intent(MainActivity.this, NewsActivity.class);
+                startActivity(intent);
+            }
+
+        });
 
         //设置成绩查询按钮的监听
         select_score=(ImageButton) findViewById(R.id.imageButton20);

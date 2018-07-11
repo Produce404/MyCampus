@@ -20,6 +20,7 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.ScoreActivity" />
         <activity android:name=".activity.ScoreShowActivity" />
+        <activity android:name=".activity.NewsActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,12 +29,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.CourseActivity" />
-        <activity android:name=".activity.AddCourseActivity"
+        <activity
+            android:name=".activity.AddCourseActivity"
             android:label="新建课程"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".activity.FillActivity"
+        <activity
+            android:name=".activity.FillActivity"
             android:label="测试"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".activity.NewsShowActivity" />
     </application>
 
 </manifest>

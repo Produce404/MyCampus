@@ -3,6 +3,13 @@
     <string name="heading">课程表</string>
     <string name="set">设置</string>
     <string name="exit">退出</string>
+
+    <string name="news_name_1">重大公告</string>
+    <string name="news_name_2">一面看水，一面想你</string>
+    <string name="news_name_3">[7月6日]暑假期间行政安排</string>
+    <string name="news_des_1">武汉大学校长今日为珞珈山第一蛇皮怪颁奖</string>
+    <string name="news_des_2">如题，想你</string>
+    <string name="news_des_3">暑假终于来了呢</string>
     <string-array name="sel_xn">
         <item>2015</item>
         <item>2016</item>
