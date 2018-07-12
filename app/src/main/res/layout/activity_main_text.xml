@@ -22,6 +22,16 @@
                     android:layout_weight="0"
                     app:srcCompat="@drawable/main_whu1" />
 
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="45dp"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:text="2016302580001-王尼玛" />
+
     </RelativeLayout>
 
     <RelativeLayout
