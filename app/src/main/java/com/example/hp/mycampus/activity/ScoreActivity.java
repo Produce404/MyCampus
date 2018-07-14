@@ -5,18 +5,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
-
-
-import com.example.hp.mycampus.R;
-import com.example.hp.mycampus.model.Score;
-import com.example.hp.mycampus.util.InfoUtil;
+import android.widget.Toast;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
+
+import com.example.hp.mycampus.R;
+import com.example.hp.mycampus.util.HttpScoreUtil;
+import com.example.hp.mycampus.util.MyScore;
 
 
 public class ScoreActivity extends Activity {
@@ -24,19 +26,36 @@ public class ScoreActivity extends Activity {
     private String s_xn = null;
     private Spinner sel_xn = null;
     private Spinner sel_xq = null;
-    private Button select_score_show;
-
+    private Button query;
+    //Handler消息接收
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.arg1) {
+                case 1:
+                    Toast.makeText(getApplicationContext(), "数据获取失败!请检查设置是否有误!", Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+    };
+    private String password;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+        //获取用户名密码
+        SharedPreferences sp = getSharedPreferences("config", 0);
+        password = sp.getString("password","");
+        username = sp.getString("username","");
 
+        query = (Button) findViewById(R.id.query);
         sel_xn = (Spinner) findViewById(R.id.sel_xn);
         sel_xq = (Spinner) findViewById(R.id.sel_xq);
-
         //设置学年Spinner的监听事件 设置选择的值
-        sel_xn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*sel_xn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 s_xn = parent.getItemAtPosition(position).toString();
@@ -44,10 +63,9 @@ public class ScoreActivity extends Activity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                s_xn = "2015";
+                s_xn = "2014";
             }
         });
-
         //设置学期Spinner的监听事件 设置选择的值
         sel_xq.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -57,40 +75,42 @@ public class ScoreActivity extends Activity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                s_xq = "上";
+                s_xq = "0";
             }
-        });
-
-
-        
-        //设置成绩查询按钮的监听
-        select_score_show=(Button) findViewById(R.id.query);
-
-
-        select_score_show.setOnClickListener(new View.OnClickListener() {
+        });*/
+        //进行查询成绩的操作
+        query.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(ScoreActivity.this, ScoreShowActivity.class);
+                startActivity(intent);
+                //连接服务器 ,获取成绩信息的逻辑
+                /*new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        HttpScoreUtil httpScoreUtil = new HttpScoreUtil(s_xn, s_xq);
+                        List<MyScore> result = null;
+                        //连接服务器 获取Cookies
+                        System.out.println("SetCookies  : "+username+"---"+password);
+                        httpScoreUtil.getCookies(username, password);
+                        result = httpScoreUtil.getQuery();
+                        if (result.size() == 0) {
+                            //获取数据失败 发送提示消息
+                            Intent intent = new Intent(getApplicationContext(), ScoreShowActivity.class);
+                            Message msg = handler.obtainMessage();
+                            msg.arg1 = 1;
+                            handler.sendMessage(msg);
 
-                //筛选符合条件的成绩
-                ArrayList<Score> scores = InfoUtil.getScores();
-
-                ArrayList<Score> newScores = new ArrayList<>();
-                for(Score score : scores) {
-                    if(score.getYear().equals(s_xn)) {
-                        String judge = (s_xq.equals("0"))?"上":"下";
-                        if(score.getSemester().equals(judge)) {
-                            newScores.add(score);
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), ScoreShowActivity.class);
+                            intent.putExtra("result", (Serializable) result);
+                            startActivity(intent);
                         }
                     }
-                }
-                //System.out.println(newScores);
-
-                //跳转
-                Intent intent = new Intent(ScoreActivity.this, ScoreShowActivity.class);
-                //传递实例
-                intent.putExtra("scores",(Serializable)newScores);
-                startActivity(intent);
+                }.start();*/
             }
         });
     }
 }
+

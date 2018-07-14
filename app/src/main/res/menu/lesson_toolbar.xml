@@ -4,14 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/add_lessons"
-        android:title="增"
+        android:icon="@drawable/add"
+        android:title="课程"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/lesson_import"
-        android:title="导"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/delete_all"
-        android:title="删"
+        android:id="@+id/menu_about"
+        android:icon="@drawable/above"
+        android:title="测试"
         app:showAsAction="ifRoom"/>
 </menu>

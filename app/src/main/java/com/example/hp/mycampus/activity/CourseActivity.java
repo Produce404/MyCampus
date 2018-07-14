@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.hp.mycampus.R;
 import com.example.hp.mycampus.model.Lesson;
-import com.example.hp.mycampus.util.DatabaseHelper;
+import com.example.hp.mycampus.util.LessonDatabaseHelper;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class CourseActivity extends AppCompatActivity {
     private RelativeLayout day;
 
     //SQLite Helper类
-    private DatabaseHelper databaseHelper = new DatabaseHelper
+    private LessonDatabaseHelper lessonDatabaseHelper = new LessonDatabaseHelper
             (this, "database.db", null, 1);
 
     //最少课程数
@@ -54,7 +54,7 @@ public class CourseActivity extends AppCompatActivity {
     //从数据库加载数据
     private void loadData() {
         ArrayList<Lesson> lessonsList = new ArrayList<>(); //课程列表
-        SQLiteDatabase sqLiteDatabase =  databaseHelper.getWritableDatabase();//从helper中获得数据库
+        SQLiteDatabase sqLiteDatabase =  lessonDatabaseHelper.getWritableDatabase();//从helper中获得数据库
         //游标，表示每一行的集合
         Cursor cursor = sqLiteDatabase.rawQuery("select * from lessons", null);
         if (cursor.moveToFirst()) {
@@ -80,7 +80,7 @@ public class CourseActivity extends AppCompatActivity {
     //保存数据到数据库  1.打开数据库2.执行SQL语句
     private void saveData(Lesson lesson) {
         //当数据库不可写入时，getReadableDatabase()以只读的方式打开数据库，而getWritableDatabase()会出现异常
-        SQLiteDatabase sqLiteDatabase =  databaseHelper.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase =  lessonDatabaseHelper.getWritableDatabase();
         //执行SQL语句
         sqLiteDatabase.execSQL
                 ("insert into lessons(lesson_name, teacher_name, class_room, day, class_start, class_end) " + "values(?, ?, ?, ?, ?, ?)",
@@ -164,7 +164,7 @@ public class CourseActivity extends AppCompatActivity {
                 public boolean onLongClick(View v) {
                     v.setVisibility(View.GONE);//先隐藏
                     day.removeView(v);//再移除课程视图
-                    SQLiteDatabase sqLiteDatabase =  databaseHelper.getWritableDatabase();
+                    SQLiteDatabase sqLiteDatabase =  lessonDatabaseHelper.getWritableDatabase();
                     sqLiteDatabase.execSQL("delete from lessons where lesson_name = ?", new String[] {lesson.getLessonName()});
                     return true;
                 }
@@ -201,7 +201,7 @@ public class CourseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
+        getMenuInflater().inflate(R.menu.lesson_toolbar, menu);
         return true;
     }
 

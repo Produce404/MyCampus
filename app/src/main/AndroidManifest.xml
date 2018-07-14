@@ -21,7 +21,9 @@
         <activity android:name=".activity.ScoreActivity" />
         <activity android:name=".activity.ScoreShowActivity" />
         <activity android:name=".activity.NewsActivity" />
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.AddTimeActivity" />
+        <activity android:name=".activity.NewsShowActivity" />
+        <activity android:name=".activity.TimeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +39,8 @@
             android:name=".activity.FillActivity"
             android:label="测试"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".activity.NewsShowActivity" />
+
+        <activity android:name=".activity.LostActivity" />
     </application>
 
 </manifest>

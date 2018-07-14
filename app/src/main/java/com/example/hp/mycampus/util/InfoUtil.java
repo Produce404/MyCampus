@@ -1,17 +1,11 @@
 package com.example.hp.mycampus.util;
-import com.example.hp.mycampus.model.Lesson;
-import com.example.hp.mycampus.model.Score;
 
-<<<<<<< HEAD
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-=======
-import java.io.ByteArrayInputStream;
->>>>>>> faa57cc0a58de89ab73362a8878fc427f28d1083
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,113 +18,26 @@ import java.util.Map;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
-<<<<<<< HEAD
 
 import com.example.hp.mycampus.model.ChooseLessonItem;
 import com.example.hp.mycampus.model.Information;
 import com.example.hp.mycampus.model.Lesson;
 import com.example.hp.mycampus.model.Score;
-=======
->>>>>>> faa57cc0a58de89ab73362a8878fc427f28d1083
 
 public class InfoUtil {
+
     private final static String url_safecode = "http://210.42.121.241/servlet/GenImg"; // 验证码
     private final static String url_login = "http://210.42.121.241/servlet/Login"; // 登录
     private static String url_lessons = "http://210.42.121.241/stu/stu_index.jsp";// 课表
-<<<<<<< HEAD
     private final static String url_information = "http://210.42.121.241/stu/student_information.jsp";// 个人信息
     private static String url_chooselesson = "http://210.42.121.241/stu/choose_PubLsn_list.jsp?XiaoQu=0&credit=0&keyword=&pageNum=";// 选课
-=======
->>>>>>> faa57cc0a58de89ab73362a8878fc427f28d1083
     private static String url_score;// 成绩表
     private static Map<String, String> cookies;
     private static ArrayList<Lesson> lessons = new ArrayList<>();
     private static ArrayList<Score> scores = new ArrayList<>();
-<<<<<<< HEAD
     private static ArrayList<ChooseLessonItem> chooseLessonItems = new ArrayList<>();
     private static String reason = "";
     private static Information information;
-=======
-    private static String reason = "";
-    public static ArrayList<Score> getScores() {
-        return scores;
-    }
-
-
-    private static ArrayList<Score> dealWithScores() {
-        ArrayList<Score> scores = new ArrayList<>();
-        Response res = null;
-        try {
-            res = Jsoup.connect("http://210.42.121.241/stu/stu_score_parent.jsp").cookies(cookies)
-                    .ignoreContentType(true).method(Method.GET).execute();
-
-            String s = res.body();
-            s = s.substring(s.indexOf("attr") + 1);
-            s = s.substring(s.indexOf("attr") + 1);
-            s = s.substring(s.indexOf("attr") + 1);
-            s = s.substring(s.indexOf("attr") + 12);
-            s = s.substring(0, s.indexOf("\"+"));
-
-            s = "http://210.42.121.241" + s;
-
-            url_score = s;
-            res = Jsoup.connect(url_score).cookies(cookies).ignoreContentType(true).method(Method.GET).execute();
-
-            String result = res.body();
-            scores = parseScore(result);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return scores;
-    }
-
-    private static ArrayList<Score> parseScore(String s) {
-        ArrayList<Score> scores = new ArrayList<>();
-        s = s.substring(s.indexOf("listTable"));
-        s = s.substring(0, s.indexOf("</table>"));
-
-        while (s.contains("<tr ")) {
-            s = s.substring(s.indexOf("<td>") + 4);
-            String id = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String name = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String lessonType = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String credit = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String teacher = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String place = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String type = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String year = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String semester = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String score = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("</tr>"));
-
-            Score _score = new Score(year,semester,name,score);
-            scores.add(_score);
-        }
-        return scores;
-    }
-
-
-
->>>>>>> faa57cc0a58de89ab73362a8878fc427f28d1083
 
     public static ArrayList<Lesson> getLessons() {
         return lessons;
@@ -144,7 +51,6 @@ public class InfoUtil {
         return reason;
     }
 
-<<<<<<< HEAD
     public static Information getInformation() {
         return information;
     }
@@ -152,21 +58,6 @@ public class InfoUtil {
     public static ArrayList<ChooseLessonItem> getChooseLessonItems() {
         return chooseLessonItems;
     }
-=======
-    public static void getSafeCode() {
-        Response res = null;
-        try {
-            res = Jsoup.connect(url_safecode).ignoreContentType(true).method(Method.GET)
-                    .execute();
-            byte[] bytes = res.bodyAsBytes();
-            System.out.println("byte文件已经获取！");
-
-            saveFile(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        cookies = res.cookies();
->>>>>>> faa57cc0a58de89ab73362a8878fc427f28d1083
 
     public static void getVerificationCode() {
         Response res = null;
@@ -230,7 +121,6 @@ public class InfoUtil {
                 url = url.substring(url.indexOf("('") + 2);
                 url = url.substring(0, url.indexOf("'"));
 
-<<<<<<< HEAD
                 url_lessons = "http://210.42.121.241" + url/*+"&year=2018&term=%C9%CF"*/;
                 if (lessons.isEmpty())
                     lessons = dealWithLessons(url_lessons);
@@ -240,13 +130,6 @@ public class InfoUtil {
                     information = dealWithInformation();
                 if (chooseLessonItems.isEmpty())
                     chooseLessonItems = dealWithChoosingLeson();
-=======
-                url_lessons = "http://210.42.121.241" + url+"&year=2018&term=%C9%CF";
-                lessons = dealWithLessons(url_lessons);
-                scores=dealWithScores();
-
-
->>>>>>> faa57cc0a58de89ab73362a8878fc427f28d1083
                 return true;
             } else {
                 if (!result.contains("对不起，您无权访问当前页面")) { // 登录失败
@@ -380,7 +263,6 @@ public class InfoUtil {
             return null;
         }
     }
-<<<<<<< HEAD
 
     private static ArrayList<Score> dealWithScores() {
         ArrayList<Score> scores = new ArrayList<>();
@@ -654,6 +536,3 @@ public class InfoUtil {
     }
 }
 
-=======
-}
->>>>>>> faa57cc0a58de89ab73362a8878fc427f28d1083
