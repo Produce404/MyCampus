@@ -30,8 +30,5 @@ dependencies {
     compile 'androidx.recyclerview:recyclerview:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     implementation 'com.google.android.material:material:1.0.0-alpha1'
-<<<<<<< HEAD
 
-=======
->>>>>>> 51f9f08bb717f471176a94a7982a5609dcf227eb
 }

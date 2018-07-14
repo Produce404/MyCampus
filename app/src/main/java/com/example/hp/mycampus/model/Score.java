@@ -1,6 +1,5 @@
 package com.example.hp.mycampus.model;
 
-<<<<<<< HEAD
 public class Score {
     private String id;// 课头号
     private String name;// 课程名称
@@ -114,61 +113,4 @@ public class Score {
                 + teacher + ", place=" + place + ", type=" + type + ", year=" + year + ", semester=" + semester
                 + ", score=" + score + "]";
     }
-=======
-import java.io.Serializable;
-
-public class Score implements Serializable {
-
-
-	private String year;// 学年
-	private String semester;// 学期
-	private String name;// 课程名称
-	private String score;// 成绩
-
-
-	public Score(String year, String semester, String name, String score) {
-		this.year=year;
-		this.semester=semester;
-		this.name=name;
-		this.score=score;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public String getYear() {
-		return year;
-	}
-
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public String getSemester() {
-		return semester;
-	}
-
-	public void setSemester(String semester) {
-		this.semester = semester;
-	}
-
-	public String getScore() {
-		return score;
-	}
-
-	public void setScore(String score) {
-		this.score = score;
-	}
-
-	@Override
-	public String toString() {
-		return "Score [ name=" + name  + ", year=" + year + ", semester=" + semester + ", score=" + score + "]";
-	}
->>>>>>> 51f9f08bb717f471176a94a7982a5609dcf227eb
 }

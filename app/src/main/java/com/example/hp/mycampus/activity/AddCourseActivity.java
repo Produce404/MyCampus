@@ -2,10 +2,7 @@ package com.example.hp.mycampus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +12,11 @@ import android.widget.Toast;
 import com.example.hp.mycampus.R;
 import com.example.hp.mycampus.model.Lesson;
 
-public class AddCourseActivity extends Activity {
+public class AddCourseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.activity_add_course);
 
 

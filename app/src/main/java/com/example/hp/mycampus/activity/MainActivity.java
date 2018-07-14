@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳转
-                Intent intent = new Intent(MainActivity.this, ExpressActivity.class);
+                Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
                 startActivity(intent);
             }
         });
