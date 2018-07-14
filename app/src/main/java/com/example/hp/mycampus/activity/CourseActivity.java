@@ -19,7 +19,11 @@ import android.widget.Toast;
 
 import com.example.hp.mycampus.R;
 import com.example.hp.mycampus.model.Lesson;
+<<<<<<< HEAD
 import com.example.hp.mycampus.util.LessonDatabaseHelper;
+=======
+import com.example.hp.mycampus.util.DatabaseHelper;
+>>>>>>> parent of faa57cc... Merge branch 'master' of https://github.com/Produce404/MyCampus
 
 import java.util.ArrayList;
 

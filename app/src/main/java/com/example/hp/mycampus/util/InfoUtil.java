@@ -47,12 +47,17 @@ public class InfoUtil {
         return scores;
     }
 
+<<<<<<< HEAD
     public static String getReason() {
         return reason;
     }
 
     public static Information getInformation() {
         return information;
+=======
+    public static ArrayList<Lesson> getLessons() {
+        return lessons;
+>>>>>>> parent of faa57cc... Merge branch 'master' of https://github.com/Produce404/MyCampus
     }
 
     public static ArrayList<ChooseLessonItem> getChooseLessonItems() {

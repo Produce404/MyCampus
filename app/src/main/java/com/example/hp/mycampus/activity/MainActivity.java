@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //跳转
                 Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+<<<<<<< HEAD
                 startActivity(intent);
             }
         });
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //跳转
                 Intent intent = new Intent(MainActivity.this, LostActivity.class);
+=======
+>>>>>>> parent of faa57cc... Merge branch 'master' of https://github.com/Produce404/MyCampus
                 startActivity(intent);
             }
         });
