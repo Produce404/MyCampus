@@ -216,9 +216,55 @@ public class CourseActivity extends AppCompatActivity {
                 Intent intent = new Intent(CourseActivity.this, AddCourseActivity.class);
                 startActivityForResult(intent, 0);
                 break;
+<<<<<<< HEAD
             case R.id.menu_about:
                 Intent intent1 = new Intent(CourseActivity.this, FillActivity.class);
                 startActivityForResult(intent1, 1);
+=======
+            case R.id.lesson_import:
+                //登陆后获取爬取的课程信息
+                ArrayList<Lesson> lessons =InfoUtil.getLessons();
+                /*ArrayList<Lesson> lessons =  new ArrayList<Lesson>();
+                Lesson lesson1 = new Lesson("沙雕安卓","","","1","3","5");
+                Lesson lesson2 = new Lesson("沙雕安卓","","","2","3","5");
+                Lesson lesson3 = new Lesson("沙雕安卓","","","3","3","5");
+                Lesson lesson4 = new Lesson("沙雕安卓","","","4","3","5");
+                Lesson lesson5 = new Lesson("沙雕安卓","","","5","3","5");
+                Lesson lesson6 = new Lesson("沙雕安卓","","","6","3","5");
+                Lesson lesson7 = new Lesson("沙雕安卓","","","7","3","5");
+                Lesson lesson8 = new Lesson("沙雕安卓","","","1","6","8");
+                Lesson lesson9 = new Lesson("沙雕安卓","","","2","6","8");
+                Lesson lesson10 = new Lesson("沙雕安卓","","","3","6","8");
+                Lesson lesson11 = new Lesson("沙雕安卓","","","4","6","8");
+                Lesson lesson12 = new Lesson("沙雕安卓","","","5","6","8");
+                Lesson lesson13 = new Lesson("沙雕安卓","","","6","6","8");
+                Lesson lesson14 = new Lesson("沙雕安卓","","","7","6","8");
+                lessons.add(lesson1);
+                lessons.add(lesson2);
+                lessons.add(lesson3);
+                lessons.add(lesson4);
+                lessons.add(lesson5);
+                lessons.add(lesson6);
+                lessons.add(lesson7);
+                lessons.add(lesson8);
+                lessons.add(lesson9);
+                lessons.add(lesson10);
+                lessons.add(lesson11);
+                lessons.add(lesson12);
+                lessons.add(lesson13);
+                lessons.add(lesson14);*/
+                for(Lesson lesson : lessons){
+                    //创建课程表视图
+                    createcourseView(lesson);
+                    //存储数据到数据库
+                    saveData(lesson);}
+                break;
+            case R.id.delete_all:
+                SQLiteDatabase sqLiteDatabase =  databaseHelper.getWritableDatabase();
+                sqLiteDatabase.execSQL("delete from lessons");
+                Toast.makeText(this,"Delete !!!",Toast.LENGTH_SHORT).show();
+                this.recreate();
+>>>>>>> parent of 72b9ba7... 增加了快递查询
                 break;
         }
         return true;
