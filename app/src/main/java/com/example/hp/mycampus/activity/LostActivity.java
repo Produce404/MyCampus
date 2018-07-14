@@ -10,13 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +58,7 @@ public class LostActivity extends AppCompatActivity {
             View view;
             ViewHolder mHolder;
             if(convertView==null){
-                view= LayoutInflater.from(LostActivity.this).inflate(R.layout.list_item,null);
+                view= LayoutInflater.from(LostActivity.this).inflate(R.layout.lost_item,null);
                 mHolder=new ViewHolder();
                 mHolder.card_title=(TextView)view.findViewById(R.id.cardTitle);
                 view.setTag(mHolder);  //将ViewHolder存储在View中

@@ -57,7 +57,7 @@ public class LoginActivity extends Activity {
             StrictMode.setThreadPolicy(policy);
         }
         //获取验证码
-        InfoUtil.getSafeCode();
+        InfoUtil.getVerificationCode();
         String img_path = "data/data/com.example.hp.mycampus/safecode.png";
         Bitmap bmp= BitmapFactory.decodeFile(img_path);
         ImageView imageview=(ImageView) findViewById(R.id.imageView);
@@ -67,7 +67,7 @@ public class LoginActivity extends Activity {
             //设置登入事件
             @Override
             public void onClick(View v) {
-                InfoUtil.getSafeCode();
+                InfoUtil.getVerificationCode();
                 String img_path = "data/data/com.example.hp.mycampus/safecode.png";
                 Bitmap bmp= BitmapFactory.decodeFile(img_path);
 
@@ -117,7 +117,7 @@ public class LoginActivity extends Activity {
                                     Message msg = handler.obtainMessage();
                                     msg.arg1 = 0;
                                     handler.sendMessage(msg);
-                                    InfoUtil.getSafeCode();
+                                    InfoUtil.getVerificationCode();
                                     String img_path = "data/data/com.example.hp.mycampus/safecode.png";
                                     Bitmap bmp= BitmapFactory.decodeFile(img_path);
                                     ImageView imageview=(ImageView) findViewById(R.id.imageView);
@@ -139,3 +139,21 @@ public class LoginActivity extends Activity {
         });
     }
 }
+
+//┏┓　　　┏┓
+//┏┛┻━━━┛┻┓
+//┃　　　　　　　┃ 　
+//┃　　　━　　　┃
+//┃　┳┛　┗┳　┃
+//┃　　　　　　　┃
+//┃　　　┻　　　┃
+//┃　　　　　　　┃
+//┗━┓　　　┏━┛
+//┃　　　┃  神兽保佑　　　　　　　　
+//┃　　　┃  代码无BUG！
+//┃　　　┗━━━┓
+//┃　　　　　　　┣┓
+//┃　　　　　　　┏┛
+//┗┓┓┏━┳┓┏┛
+// ┃┫┫　┃┫┫
+// ┗┻┛　┗┻┛
