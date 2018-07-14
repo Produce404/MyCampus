@@ -6,12 +6,16 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 import com.example.hp.mycampus.R;
 import com.example.hp.mycampus.model.Lesson;
 import com.example.hp.mycampus.util.DatabaseHelper;
+import com.example.hp.mycampus.util.InfoUtil;
 
 import java.util.ArrayList;
 
@@ -31,6 +36,8 @@ public class CourseActivity extends AppCompatActivity {
     //SQLite Helper类
     private DatabaseHelper databaseHelper = new DatabaseHelper
             (this, "database.db", null, 1);
+    //每节课的高度
+    private int course_height;
 
     //最少课程数
     int currentcoursesNumber = 0;
@@ -43,12 +50,23 @@ public class CourseActivity extends AppCompatActivity {
 
         //工具条
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("课程表");
         setSupportActionBar(toolbar);
 
         createLeftView();
 
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                LinearLayout leftViewLayout = (LinearLayout) findViewById(R.id.left_view_layout);
+                course_height=leftViewLayout.getHeight()/13;
+                loadData();
+            }
+        }, 100);    //延时1s执行
         //从数据库读取数据
-        loadData();
+
     }
 
     //从数据库加载数据
@@ -92,16 +110,16 @@ public class CourseActivity extends AppCompatActivity {
                                 lesson.getEndTime()+""}
                 );
     }
-
     //创建课程节数视图
     private void createLeftView() {
         for (int i = 0;i<maxcoursesNumber;i++){
             View view = LayoutInflater.from(this).inflate(R.layout.left_view,null);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(100,190);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(100,0,1);
             view.setLayoutParams(params);
+
             TextView textView = view.findViewById(R.id.class_number_text);
             textView.setText(String.valueOf(++currentcoursesNumber));
-            LinearLayout leftViewLayout = findViewById(R.id.left_view_layout);
+            LinearLayout leftViewLayout = (LinearLayout) findViewById(R.id.left_view_layout);
             leftViewLayout.addView(view);
         }
         /*int len = lesson.getEnd();//获取所有课程最后一节课是多少节课
@@ -127,7 +145,6 @@ public class CourseActivity extends AppCompatActivity {
 
     //创建课程视图
     private void createcourseView(final Lesson lesson) {
-        int height = 190;
         //获取课程是星期几
         int nowDay = Integer.valueOf(lesson.getDay());
         //获取课程开始的节数
@@ -145,15 +162,16 @@ public class CourseActivity extends AppCompatActivity {
                 case 4: day = findViewById(R.id.thursday); break;
                 case 5: day = findViewById(R.id.friday); break;
                 case 6: day = findViewById(R.id.saturday); break;
-                case 7: day = findViewById(R.id.weekday); break;
+                case 7: day = findViewById(R.id.sunday); break;
             }
             //每一个课程都是一个course_card
             final View v = LayoutInflater.from(this).inflate(R.layout.course_card, null); //加载单个课程布局
-            v.setY(height * class_start-1); //设置开始高度,即第几节课开始,比如第一节课就从0开始
+            v.setY(course_height * class_start-1); //设置开始高度,即第几节课开始,比如第一节课就从0开始
             //给课程布局设置参数，宽
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
                     //宽适应原布局单元的大小，布局高度为（占的课时*每个课时占的高度）
-                    (ViewGroup.LayoutParams.MATCH_PARENT,(class_end-class_start+1)*height - 8); //设置布局高度,即跨多少节课
+                   (ViewGroup.LayoutParams.MATCH_PARENT,(class_end-class_start+1)*course_height - 8,1); //设置布局高度,即跨多少节课
+                   //(ViewGroup.LayoutParams.MATCH_PARENT,cours4wwe_height);
             v.setLayoutParams(params);//属性绑定
             TextView text = v.findViewById(R.id.text_view);
             text.setText(lesson.getLessonName() + "\n" + lesson.getTeacherName() + "\n" +"@"+ lesson.getClassRoom()); //显示课程名
@@ -212,11 +230,52 @@ public class CourseActivity extends AppCompatActivity {
                 Intent intent = new Intent(CourseActivity.this, AddCourseActivity.class);
                 startActivityForResult(intent, 0);
                 break;
-            case R.id.menu_about:
-                Intent intent1 = new Intent(CourseActivity.this, FillActivity.class);
-                startActivityForResult(intent1, 1);
+            case R.id.lesson_import:
+                //登陆后获取爬取的课程信息
+                ArrayList<Lesson> lessons =InfoUtil.getLessons();
+                /*ArrayList<Lesson> lessons =  new ArrayList<Lesson>();
+                Lesson lesson1 = new Lesson("沙雕安卓","","","1","3","5");
+                Lesson lesson2 = new Lesson("沙雕安卓","","","2","3","5");
+                Lesson lesson3 = new Lesson("沙雕安卓","","","3","3","5");
+                Lesson lesson4 = new Lesson("沙雕安卓","","","4","3","5");
+                Lesson lesson5 = new Lesson("沙雕安卓","","","5","3","5");
+                Lesson lesson6 = new Lesson("沙雕安卓","","","6","3","5");
+                Lesson lesson7 = new Lesson("沙雕安卓","","","7","3","5");
+                Lesson lesson8 = new Lesson("沙雕安卓","","","1","6","8");
+                Lesson lesson9 = new Lesson("沙雕安卓","","","2","6","8");
+                Lesson lesson10 = new Lesson("沙雕安卓","","","3","6","8");
+                Lesson lesson11 = new Lesson("沙雕安卓","","","4","6","8");
+                Lesson lesson12 = new Lesson("沙雕安卓","","","5","6","8");
+                Lesson lesson13 = new Lesson("沙雕安卓","","","6","6","8");
+                Lesson lesson14 = new Lesson("沙雕安卓","","","7","6","8");
+                lessons.add(lesson1);
+                lessons.add(lesson2);
+                lessons.add(lesson3);
+                lessons.add(lesson4);
+                lessons.add(lesson5);
+                lessons.add(lesson6);
+                lessons.add(lesson7);
+                lessons.add(lesson8);
+                lessons.add(lesson9);
+                lessons.add(lesson10);
+                lessons.add(lesson11);
+                lessons.add(lesson12);
+                lessons.add(lesson13);
+                lessons.add(lesson14);*/
+                for(Lesson lesson : lessons){
+                    //创建课程表视图
+                    createcourseView(lesson);
+                    //存储数据到数据库
+                    saveData(lesson);}
+                break;
+            case R.id.delete_all:
+                SQLiteDatabase sqLiteDatabase =  databaseHelper.getWritableDatabase();
+                sqLiteDatabase.execSQL("delete from lessons");
+                Toast.makeText(this,"Delete !!!",Toast.LENGTH_SHORT).show();
+                this.recreate();
                 break;
         }
         return true;
     }
+
 }

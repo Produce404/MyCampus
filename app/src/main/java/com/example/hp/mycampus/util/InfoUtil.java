@@ -24,6 +24,9 @@ public class InfoUtil {
     private static ArrayList<Lesson> lessons = new ArrayList<>();
     private static String reason = "";
 
+
+
+
     public static ArrayList<Lesson> getLessons() {
         return lessons;
     }
