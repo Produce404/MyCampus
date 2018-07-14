@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 startActivity(intent);
             }
         });
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LostActivity.class);
 =======
 >>>>>>> parent of faa57cc... Merge branch 'master' of https://github.com/Produce404/MyCampus
+=======
+>>>>>>> parent of 72b9ba7... 增加了快递查询
 =======
 >>>>>>> parent of 72b9ba7... 增加了快递查询
 =======
