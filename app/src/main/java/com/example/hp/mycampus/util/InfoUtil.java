@@ -101,6 +101,9 @@ public class InfoUtil {
         return scores;
     }
 
+
+
+
     public static ArrayList<Lesson> getLessons() {
         return lessons;
     }
