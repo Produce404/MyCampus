@@ -198,18 +198,7 @@ public class CourseActivity extends AppCompatActivity {
     //获取创建课表中的course实例
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == 1 && data != null) {
-            ArrayList<Lesson> lessons = (ArrayList<Lesson>)data.getSerializableExtra("lessons");
-            for(Lesson lesson : lessons){
-                //创建课程表左边视图(节数)
-                //createLeftView(lesson);
-                //创建课程表视图
-                createcourseView(lesson);
-                //存储数据到数据库
-                saveData(lesson);}
-            //createcourseView(course_single);
-            //saveData(course_single);
-        }else if(requestCode == 0 && resultCode == 0 && data != null){
+        if(requestCode == 0 && resultCode == 0 && data != null){
             Lesson course_single = (Lesson) data.getSerializableExtra("lessons");
             createcourseView(course_single);
             saveData(course_single);
@@ -233,35 +222,6 @@ public class CourseActivity extends AppCompatActivity {
             case R.id.lesson_import:
                 //登陆后获取爬取的课程信息
                 ArrayList<Lesson> lessons =InfoUtil.getLessons();
-                /*ArrayList<Lesson> lessons =  new ArrayList<Lesson>();
-                Lesson lesson1 = new Lesson("沙雕安卓","","","1","3","5");
-                Lesson lesson2 = new Lesson("沙雕安卓","","","2","3","5");
-                Lesson lesson3 = new Lesson("沙雕安卓","","","3","3","5");
-                Lesson lesson4 = new Lesson("沙雕安卓","","","4","3","5");
-                Lesson lesson5 = new Lesson("沙雕安卓","","","5","3","5");
-                Lesson lesson6 = new Lesson("沙雕安卓","","","6","3","5");
-                Lesson lesson7 = new Lesson("沙雕安卓","","","7","3","5");
-                Lesson lesson8 = new Lesson("沙雕安卓","","","1","6","8");
-                Lesson lesson9 = new Lesson("沙雕安卓","","","2","6","8");
-                Lesson lesson10 = new Lesson("沙雕安卓","","","3","6","8");
-                Lesson lesson11 = new Lesson("沙雕安卓","","","4","6","8");
-                Lesson lesson12 = new Lesson("沙雕安卓","","","5","6","8");
-                Lesson lesson13 = new Lesson("沙雕安卓","","","6","6","8");
-                Lesson lesson14 = new Lesson("沙雕安卓","","","7","6","8");
-                lessons.add(lesson1);
-                lessons.add(lesson2);
-                lessons.add(lesson3);
-                lessons.add(lesson4);
-                lessons.add(lesson5);
-                lessons.add(lesson6);
-                lessons.add(lesson7);
-                lessons.add(lesson8);
-                lessons.add(lesson9);
-                lessons.add(lesson10);
-                lessons.add(lesson11);
-                lessons.add(lesson12);
-                lessons.add(lesson13);
-                lessons.add(lesson14);*/
                 for(Lesson lesson : lessons){
                     //创建课程表视图
                     createcourseView(lesson);
